@@ -32,7 +32,7 @@ var data = {
 
 //440 because graph axes will take up 30
 var scale = function(arr){
-    var ret =  parseInt( 440 / (Math.max.apply(null, arr) - Math.min.apply(null, arr)));
+    var ret =  Math.max.apply(null, arr) / 440;
     return ret;
 };
 
@@ -52,20 +52,13 @@ var make_scales = function(scaleX, scaleY){
     console.log(scaleY);
     console.log("running make_scales...");
     var iterateY = parseInt(500/scaleY);
-    console.log("iterateY");
-    console.log(iterateY);
-    var iterateX = parseInt(500/scaleX);
-    console.log("iterateX");
-    console.log(iterateX);
-    for (var y = 0; y < 440; y+= scaleY ){
+    for (var y = 0; y < 440; y+= 20){
 	add_line("black", 30, 500 - y - 30, 20, 500 - y - 30);
-	add_text(10, 500-y-30, y.toString());
-	//	console.log(500 - y - 30);
-	
+	add_text(10, 500-y-30, (parseInt(y*scaleY)).toString());
     }
-    for (var x = 0; x < 440; x+= scaleX){
-	add_line("black", 30 + x, 470, 30 + x, 480);
-	add_text(30+x, 490, (x).toString());
+    for (var x = 0; x < 440; x+= 20 ){
+	add_line("black", 30 + (x), 470, 30 + (x), 480);
+	add_text(30+x, 490, (parseInt(x*scaleX)).toString());
     }
 };
 
