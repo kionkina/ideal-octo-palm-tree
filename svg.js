@@ -45,6 +45,16 @@ var add_text = function(x, y, text){
     svg.append("text").attr("x", x).attr("y", y).text(text).attr("font-size", "5px");
 };
 
+var font_text = function(x,y,text,font_size){
+    svg.append("text").attr("x", x).attr("y", y).text(text).attr("font-size", font_size);
+}
+
+var add_points = function(xcor,ycor){
+    for(var i = 0; i < xcor.length; i++){
+	add_text(25 + xcor[i] + 6.8 * xcor[i], 470 + ycor[i] - 7 * ycor[i], "@");
+    };
+};
+
 var make_scales = function(scaleX, scaleY){
     console.log("scale X");
     console.log(scaleX);
@@ -65,6 +75,10 @@ var make_scales = function(scaleX, scaleY){
 var generate_scales = function(){
     console.log("running generate_scales...");
     make_scales(scale(data.x), scale(data.y));
+    font_text(50,25, data.title, "20px");
+    font_text(250, 499, "Weight", "10px");
+    font_text(1, 243, "Age", "10px");
+    add_points(data.x, data.y);
 }
 
 var button = document.getElementById("boop");
